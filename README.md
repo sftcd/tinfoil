@@ -26,6 +26,17 @@ is [cited](https://scholar.google.com/scholar?q=http%3A%2F%2Fwww.hjp.at%2Fdoc%2F
 in Google Scholar. Screwing around with such a protocol without
 due dilligence is utterly unwise.
 
+- Note that I make no allegations about the bona-fides
+of any of the proponents of the "break-TLS" schemes.
+I know and respect some of them, but they are misguided.
+However, we cannot ignore the fact that some governments
+are very keen to weaken Internet security and privacy 
+and have allocated significant budgets for that.
+[BULLRUN](https://www.theguardian.com/world/2013/sep/05/nsa-gchq-encryption-codes-security)
+for example is reported to involved wasting/spending US$250/yr
+on this. It is inevitable that some of that money ends up
+being spent/wasted on schemes to break or weaken TLS.
+
 ## Specific "break-TLS" proposals
 
 ### [draft-green-tls-static-dh-in-tls13-01](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
@@ -42,6 +53,21 @@ falls outside the charter.
 but is a wiretapping scheme that meets the definition in
 [RFC2804](https://tools.ietf.org/html/rfc2804) and therefore
 cannot be a standards-track work item in the IETF.
+
+- Some have argued that even if this cannot be an
+IETF standards track specification, it should still be
+developed in the IETF. That also goes against RFC2804,
+which calls for documentation and not development,
+of deployed wiretapping schemes. Documenting the
+wiretapping schemes that exist is a good thing. 
+Developing new ones is a bad thing, for all the
+reasons set out explicitly in RFC2804. As a 
+speculative new wiretapping design, this draft
+should not be an IETF specification of any kind, 
+so long as RFC2804 has not been obsoleted, and
+yet the authors here are making no attempt to
+obsolete 2804, and are thus attempting an end-run
+around IETF processes.
 
 - This draft aims to provide wiretapping only "within"
 enterprise networks, but there is no way (and cannot be a way)
@@ -60,6 +86,30 @@ client being aware of that.
 - This draft doesn't allow TLS clients and applications
 above or behind the TLS server to know that wiretapping
 is occurring.
+
+- Ossification: this draft would introduce new ways of
+ossifying TLS, for example, the so-called "TLS decrypter" would
+have to be able to handle all updated ciphersuites before
+those could be used by bona-fide TLS clients and servers.
+We have seen that non-updated PKCS#1.5 crypto hardware
+has caused problems with updating the crypto in TLS
+for decades now, and this would cause similar problems.
+
+- This proposal entirely suits what governments doing
+pervasive monitoring would need in an API. The IETF
+has documented its consensus that [Pervasive Monitoring is an Attack](https://tools.ietf.org/html/rfc7258)
+in RFC 7258, and this API would assist with such 
+attacks. In case this seems somewhat abstract, we
+have evidence of exactly this kind of key exfiltration
+API in IPsec, as documented by [Wouters](https://nohats.ca/wordpress/blog/2014/12/29/dont-stop-using-ipsec-just-yet/)
+and [Der Spiegel](http://www.spiegel.de/media/media-35515.pdf).
+
+- We also have a documented case where a law enforcement agency 
+have attempted to coerce a mail service provider 
+([Lavabit](https://en.wikipedia.org/wiki/Lavabit) to
+providing TLS secret key materials. Developing an API
+such as envisaged in this draft would encourage such
+law enforcement attempts at key recovery in many countries.
 
 #### Why is this wiretapping?
 
