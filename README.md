@@ -27,7 +27,7 @@ but is a wiretapping scheme that meets the definition in
 [RFC2804](https://tools.ietf.org/html/rfc2804) and therefore
 cannot be a standards-track work item in the IETF.
 
-###Why is this wiretapping?
+### Why is this wiretapping?
 
 Some of the authors have denied that this is a wiretapping
 propospal, based on not matching the definitions in RFC2804.
@@ -40,7 +40,7 @@ are common, e.g. if the intermediary MTA does AV scanning.
 
 
 
-##Feel free to add older/other break-TLS proposal debunking text below here.
+## Feel free to add older/other break-TLS proposal debunking text below here.
 
 For example, about mcTLS, if you have the energy to
 consider that nonsense.
