@@ -82,6 +82,23 @@ draft deliberately aims to not provide forward secrecy
 and indeed to break forward secrecy without the TLS
 client being aware of that.
 
+- The argument has been made that it would be better
+to scrutinise proposals such as this openly in the IETF
+instead of having individual vendors develop their
+own bad-crypto implementations. As a counter to that,
+while scrutiny is good for good crypto, the overall
+ecosystem will be harmed by wide-spread use of the
+same bad-crypto, so therefore in the case of
+bad-crypto proposals such as this, it is better for
+us all that there is not a single standard.
+
+- For the enterprise uses claimed to justify this,
+there is no need for Internet-scale interoperability
+as the enterprise network is by-definition under
+a single entity's control. (And if they cannot
+control their network, then adding broken crypto
+seems even more unwise.)
+
 - This draft doesn't allow TLS clients and applications
 above or behind the TLS server to know that wiretapping
 is occurring.
