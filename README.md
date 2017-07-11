@@ -14,7 +14,7 @@ proposals to break TLS.
 ## Meta-Points
 
 In this section we call out some generic issues that all
-cause all "break-TLS" proposals fail.
+cause all "break-TLS" proposals to fail.
 
 - As with most of these break-TLS attempts, the proponents
 have apparently only analysed the deployments about which
@@ -35,6 +35,12 @@ and have allocated significant budgets for that.
 for example is reported to involved wasting/spending US$250/yr
 on this. It is inevitable that some of that money ends up
 being spent/wasted on schemes to break or weaken TLS.
+The consequence of that is that it is entirely proper
+to consider the pervasive monitoring aspects of any 
+"break-TLS" proposal, no matter what motivations are
+set out by proponents. (And again, that says nothing
+at all about proponents motivations, it's just a thing
+that we have to consider regardless.)
 
 ## Specific "break-TLS" proposals
 
