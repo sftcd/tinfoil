@@ -32,7 +32,7 @@ However, we cannot ignore the fact that some governments
 are very keen to weaken Internet security and privacy 
 and have allocated significant budgets for that.
 [BULLRUN](https://www.theguardian.com/world/2013/sep/05/nsa-gchq-encryption-codes-security)
-for example is reported to involved wasting/spending US$250/yr
+for example is reported to involved wasting/spending US$250M/yr
 on this. It is inevitable that some of that money ends up
 being spent/wasted on schemes to break or weaken TLS.
 The consequence of that is that it is entirely proper
