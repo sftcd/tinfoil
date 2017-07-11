@@ -1,5 +1,4 @@
-# tinfoil
-TLS Is Not For Obligatory Interception Lovers
+# tinfoil: TLS Is Not For Obligatory Interception Lovers
 
 This reposotiry is a place to collect together arguments
 for not breaking TLS.
