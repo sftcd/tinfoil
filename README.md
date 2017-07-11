@@ -1,6 +1,6 @@
 # tinfoil: TLS Is Not For Obligatory Interception Lovers
 
-This reposotiry is a place to collect together arguments
+This repository is a place to collect together arguments
 for not breaking TLS.
 
 At some point it may be worth turning this into an
