@@ -26,8 +26,9 @@ is [cited](https://scholar.google.com/scholar?q=http%3A%2F%2Fwww.hjp.at%2Fdoc%2F
 in Google Scholar. Screwing around with such a protocol without
 due dilligence is utterly unwise.
 
+## Specific "break-TLS" proposals
 
-## [draft-green-tls-static-dh-in-tls13-01](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
+### [draft-green-tls-static-dh-in-tls13-01](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
 
 This is one of the current proposals for breaking TLS.
 It fails in the following ways:
@@ -60,7 +61,7 @@ client being aware of that.
 above or behind the TLS server to know that wiretapping
 is occurring.
 
-### Why is this wiretapping?
+#### Why is this wiretapping?
 
 Some of the authors have denied that this is a wiretapping
 propospal, based on not matching the definitions in RFC2804.
