@@ -27,6 +27,24 @@ but is a wiretapping scheme that meets the definition in
 [RFC2804](https://tools.ietf.org/html/rfc2804) and therefore
 cannot be a standards-track work item in the IETF.
 
+- This draft aims to provide wiretapping only "within"
+enterprise networks, but there is no way (and cannot be a way)
+to constrain the use of this scheme to such networks.
+Figure 3 of the draft clearly describes a generic 
+wiretapping architecture for TLS that could (and would)
+be used in many other circumstances that the authors
+have apparently not envisaged.
+
+- This draft tries to standardise broken crypto - forward
+secrecy is a goal of cryptographic protocols and this 
+draft deliberately aims to not provide forward secrecy
+and indeed to break forward secrecy without the TLS
+client being aware of that.
+
+- This draft doesn't allow TLS clients and applications
+above or behind the TLS server to know that wiretapping
+is occurring.
+
 ### Why is this wiretapping?
 
 Some of the authors have denied that this is a wiretapping
