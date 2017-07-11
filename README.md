@@ -12,6 +12,21 @@ PRs that add to (really, record) those arguments are
 welcome, especially if they identify problems with specific 
 proposals to break TLS.
 
+## Meta-Points
+
+In this section we call out some generic issues that all
+cause all "break-TLS" proposals fail.
+
+- As with most of these break-TLS attempts, the proponents
+have apparently only analysed the deployments about which
+they care, and ignore all other uses of TLS. There are
+many other uses of TLS, for example the TLS1.2 RFC is
+currently (20170711) [referenced by](https://datatracker.ietf.org/doc/rfc5246/referencedby/) 434 other IETF specifications, and 
+is [cited](https://scholar.google.com/scholar?q=http%3A%2F%2Fwww.hjp.at%2Fdoc%2Frfc%2Frfc5246.html&btnG=&hl=en&as_sdt=0%2C5) by 3,281 publications
+in Google Scholar. Screwing around with such a protocol without
+due dilligence is utterly unwise.
+
+
 ## [draft-green-tls-static-dh-in-tls13-01](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
 
 This is one of the current proposals for breaking TLS.
