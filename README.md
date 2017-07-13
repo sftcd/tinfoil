@@ -251,6 +251,17 @@ that many enterprises are not capable of shutting down
 or controlling such interfaces that either ought not be
 offered or need to be protected.
 
+- Brian Carpenter points out (private communication) that
+"server load balancing and TLS load balancing don't
+mix well. (See [RFC7098](https://tools.ietf.org/html/rfc7098) for more.) In fact, there's no practical alternative
+for large server farms except TLS proxying in front of the servers.
+At a quick glance it seems to me that draft-green doesn't separate
+this issue from the rest. But server farms have no choice about solving
+that problem, or the intrusion/DOS detection problem, but they do have
+a choice about monitoring as such.
+Separating the operational requirements from the political requirements
+might be a good first step."
+
 #### Why is this wiretapping?
 
 Some of the authors have denied that this is a wiretapping
