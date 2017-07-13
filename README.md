@@ -16,8 +16,8 @@ proposals to break TLS.
 In this section we call out some generic issues that all
 cause all "break-TLS" proposals to fail.
 
-- As with most of these break-TLS attempts, the proponents
-have apparently only analysed the deployments about which
+- With all break-TLS attempts so far, the proponents
+have only analysed the deployments about which
 they care, and ignore all other uses of TLS. There are
 many other uses of TLS, for example the TLS1.2 RFC is
 currently (20170711) [referenced by](https://datatracker.ietf.org/doc/rfc5246/referencedby/) 434 other IETF specifications, and 
@@ -32,12 +32,13 @@ However, we cannot ignore the fact that some governments
 are very keen to weaken Internet security and privacy 
 and have allocated significant budgets for that.
 [BULLRUN](https://www.theguardian.com/world/2013/sep/05/nsa-gchq-encryption-codes-security)
-for example is reported to involved wasting/spending US$250M/yr
+for example is reported to have involved wasting/spending US$250M/yr
 on this. It is inevitable that some of that money ends up
 being spent/wasted on schemes to break or weaken TLS.
 The consequence of that is that it is entirely proper
-to consider the pervasive monitoring aspects of any 
-"break-TLS" proposal, no matter what motivations are
+to consider the [Pervasive Monitoring](https://tools.ietf.org/html/rfc7258)aspects of any 
+"break-TLS" proposal as part of our [threat model](https://tools.ietf.org/html/rfc7624)
+no matter what motivations are
 set out by proponents. (And again, that says nothing
 at all about proponents motivations, it's just a thing
 that we have to consider regardless.)
@@ -46,23 +47,23 @@ that we have to consider regardless.)
 
 ### [draft-green-tls-static-dh-in-tls13-01](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
 
-This is one of the current proposals for breaking TLS.
+This is the current (July 2017) proposal for breaking TLS.
 It fails in the following ways:
 
 - The [TLS working group charter](https://tools.ietf.org/wg/tls/charters)
 dated 2017-03-30 calls for improving the security of TLS, and 
 this proposal involves leaking private key material and hence
-falls outside the charter.
+clearly falls outside the charter.
 
 - This draft is targeted as being an IETF standards track document
-but is a wiretapping scheme that meets the definition in
+but is a wiretapping scheme (or enables wiretapping) that meets the definition in
 [RFC2804](https://tools.ietf.org/html/rfc2804) and therefore
 cannot be a standards-track work item in the IETF.
 
-- Some have argued that even if this cannot be an
+- Some may argue that even if this cannot be an
 IETF standards track specification, it should still be
-developed in the IETF. That also goes against RFC2804,
-which calls for documentation and not development,
+further developed by the IETF. IMO, that also goes against RFC2804,
+which calls for documentation, and not development,
 of deployed wiretapping schemes. Documenting the
 wiretapping schemes that exist is a good thing. 
 Developing new ones is a bad thing, for all the
@@ -74,7 +75,7 @@ yet the authors here are making no attempt to
 obsolete 2804, and are thus attempting an end-run
 around IETF processes.
 
-- This draft aims to provide wiretapping only "within"
+- This draft aims/claims to enable wiretapping only "within"
 enterprise networks, but there is no way (and cannot be a way)
 to constrain the use of this scheme to such networks.
 Figure 3 of the draft clearly describes a generic 
@@ -86,7 +87,43 @@ have apparently not envisaged.
 secrecy is a goal of cryptographic protocols and this 
 draft deliberately aims to not provide forward secrecy
 and indeed to break forward secrecy without the TLS
-client being aware of that.
+client being aware of that. [BCP200](https://datatracker.ietf.org/doc/rfc1984/)
+(which was promoted to BCP in 2015, and so is very
+recent) specifically argues against such schemes:
+
+	- "Escrow mechanisms inevitably weaken the security of the overall
+   cryptographic system, by creating new points of vulnerability that
+   can and will be attacked." 
+
+	- "KEYS SHOULD NOT BE REVEALABLE
+   The security of a modern cryptosystem rests entirely on the secrecy
+   of the keys.  Accordingly, it is a major principle of system design
+   that to the extent possible, secret keys should never leave their
+   user's secure environment.  Key escrow implies that keys must be
+   disclosed in some fashion, a flat-out contradiction of this
+   principle.  Any such disclosure weakens the total security of the
+   system."
+
+	- "Even if escrowed encryption schemes are used, there is nothing to
+   prevent someone from using another encryption scheme first.
+   Certainly, any serious malefactors would do this; the outer
+   encryption layer, which would use an escrowed scheme, would be used
+   to divert suspicion."
+
+	- "A major threat to users of cryptographic systems is the theft of
+   long-term keys (perhaps by a hacker), either before or after a
+   sensitive conversation.  To counter this threat, schemes with
+   "perfect forward secrecy" are often employed.  If PFS is used, the
+   attacker must be in control of the machine during the actual
+   conversation.  But PFS is generally incompatible with schemes
+   involving escrow of private keys.  (This is an oversimplification,
+   but a full analysis would be too lengthy for this document.)"
+
+	- Note that while the concept of key escrow that was being
+	promulgated in the mid 1990's is not identical to that 
+    being proposed here, the same vulnerabilities are
+	created once one leaks private key materials, especially
+	via a "standard" interface. 
 
 - The argument has been made that it would be better
 to scrutinise proposals such as this openly in the IETF
@@ -98,16 +135,65 @@ same bad-crypto, so therefore in the case of
 bad-crypto proposals such as this, it is better for
 us all that there is not a single standard.
 
+- This draft doesn't allow normal TLS clients and applications
+above or behind the TLS server to detect that wiretapping
+is occurring.
+
+- A [suggestion](https://www.ietf.org/mail-archive/web/tls/current/msg23802.html)
+was made on the TLS list that the deployment
+of this scheme be made part of a "website's 
+terms of service." Hiding the fact that one is
+breaking TLS in legalese seems like a terrible
+idea to this user of the web.
+
+- This proposal will either end up allowing TLS clients
+(perhaps via zmap-style surveys) to detect that the
+broken crypography is being used or it will be 
+invisible to clients. If the scheme is detectable, then
+it will likely fall out of use and end up worthless as the
+reputational cost would be high. Any IETF effort towards
+"improving" or "scrutinising" this scheme would therefore
+be wasted with high probability. In fact, developing
+this interface within the IETF would arguably increase 
+the probability of "worse solutions" being deployed
+as those would be easier to integrate. An argument
+for this draft was [offered](https://www.ietf.org/mail-archive/web/tls/current/msg23817.html)
+that standardising it would avoid such "worse
+solutions" - I see no evidence offered and claim
+(with the same evidence;-) that the opposite would eventuate.
+
+- More likely, if the scheme is initially detectable,
+then deployments will make modifications to the scheme
+to attempt to avoid detection. Such proprietary 
+modifications would mean that all effort to "improve"
+or "scrutinise" this scheme would certainly be 
+wasted. Proprietary modifications could also significantly
+weaken security.
+
+- This scheme enables active attacks - once the DH
+private values are known, then all session keys are
+known and seemingly valid packets can be injected
+into ongoing sessions.
+
+- If this scheme were widespread, it would be 
+"accidentally" deployed in places for which it
+was not intended. (See also RFC2804.) The result
+could be active attacks on e.g. widely downloaded
+web resources enabling active attacks on browsers.
+I would expect another decade of academic 
+publications and real exploits on TLS to result.
+
+- Applications built on TLS, e.g. the Web, would
+need to revise their security models to take
+into account this scheme, as it changes the
+threat model on which they have been built.
+
 - For the enterprise uses claimed to justify this,
 there is no need for Internet-scale interoperability
 as the enterprise network is by-definition under
 a single entity's control. (And if they cannot
 control their network, then adding broken crypto
 seems even more unwise.)
-
-- This draft doesn't allow TLS clients and applications
-above or behind the TLS server to know that wiretapping
-is occurring.
 
 - Ossification: this draft would introduce new ways of
 ossifying TLS, for example, the so-called "TLS decrypter" would
