@@ -135,10 +135,6 @@ same bad-crypto, so therefore in the case of
 bad-crypto proposals such as this, it is better for
 us all that there is not a single standard.
 
-- This draft doesn't allow normal TLS clients and applications
-above or behind the TLS server to detect that wiretapping
-is occurring.
-
 - A [suggestion](https://www.ietf.org/mail-archive/web/tls/current/msg23802.html)
 was made on the TLS list that the deployment
 of this scheme be made part of a "website's 
@@ -146,12 +142,21 @@ terms of service." Hiding the fact that one is
 breaking TLS in legalese seems like a terrible
 idea to this user of the web.
 
+- This draft doesn't allow normal TLS clients and applications
+above or behind the TLS server to detect that wiretapping
+is occurring.
+
 - This proposal will either end up allowing TLS clients
 (perhaps via zmap-style surveys) to detect that the
 broken crypography is being used or it will be 
 invisible to clients. If the scheme is detectable, then
 it will likely fall out of use and end up worthless as the
-reputational cost would be high. Any IETF effort towards
+reputational cost would be high unless this is very
+widely deployed, in which case the impact of exploits
+of the inevitable vulnerabilities
+would be gigantic.
+
+- Any IETF effort towards
 "improving" or "scrutinising" this scheme would therefore
 be wasted with high probability. In fact, developing
 this interface within the IETF would arguably increase 
@@ -173,7 +178,10 @@ weaken security.
 - This scheme enables active attacks - once the DH
 private values are known, then all session keys are
 known and seemingly valid packets can be injected
-into ongoing sessions.
+into ongoing sessions. The abstract of this draft
+is extermely misleading in claiming that it is
+for "passive monitoring." No mention is made in
+the draft of the active attacks it enables.
 
 - If this scheme were widespread, it would be 
 "accidentally" deployed in places for which it
@@ -219,6 +227,30 @@ providing TLS secret key materials. Developing an API
 such as envisaged in this draft would encourage such
 law enforcement attempts at key recovery in many countries.
 
+- While I'm reluctant to comment on the details of a bad
+design, the fact that this draft both breaks and depends
+upon TLS (in it's use of HTTP/TLS via RFC2818) means
+that this drafts enables "meta-attacks" where another
+party can eavesdrop on the connections between the
+various TLS-breaking components defined here, if (as
+would seem likely to me) the OPTIONAL additional CMS 
+protection is not used. Similarly,
+such a meta-attacker could likely inject chosen DH
+values into a deployment. 
+
+- [Section 7.2](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01#section-7.2)
+defines a key request interface, but defines no authorisation
+scheme, no HTTP authentiction, and requires no additional CMS
+protection.
+This creates an excellent target to attempt to find
+when one has breached some network. That is an excellent 
+example of the kind of additional vulnerability 
+created by these schemes called out in BCP200 and RFC2804.
+There is ample recent evidence [Wannacry](https://en.wikipedia.org/wiki/WannaCry_ransomware_attack)
+that many enterprises are not capable of shutting down
+or controlling such interfaces that either ought not be
+offered or need to be protected.
+
 #### Why is this wiretapping?
 
 Some of the authors have denied that this is a wiretapping
@@ -229,7 +261,36 @@ their private values and hence senders and recipients will
 not get the confidentiality they expect. Note that SMTP/TLS
 is almost ubiquituous today and that 2-TLS session setups
 are common, e.g. if the intermediary MTA does AV scanning.
+In this case, the relevant parties to the communication
+(for the RFC2804 definition) are the mail senders and
+receivers and the AV scanning MTA is the third party
+that enables wiretapping, just as a telco (with whom
+the caller or callee presumably has a contract) is the
+third party in traditional wiretaps.
 
+As another example, consider vanity domain web sites where 
+the domain holder doesn't have shell access to the 
+machine that hosts the web site. (Wordpress.com has 
+millions of such users, as to many many other sites.)
+If the hoster in that case turns on this 
+interface and provide private keys to someone who
+has access to the ciphertext TLS packets, then that is 
+wiretapping. In this scenario two people who
+are e.g. using wordpress comments to communicate
+are the first and second parties and the hoster is
+the third party, in the role of the telco in a
+traditional wiretap.
+
+It does not matter that in these cases the third
+party (AV scanner or hoster) has access to the
+cleartext but does not supply that to the consumer
+of the wiretap - whether the wiretap is based
+on runtime or later decryption of captured packets,
+or on playing back physical tapes of a conversation,
+or on consuming a live feed from the telco-equivalent
+is immaterial - the end result is that the first 
+and second parties communications are being 
+wiretapped according to the definitions in RFC2804.
 
 
 ## Feel free to add older/other break-TLS proposal debunking text below here.
