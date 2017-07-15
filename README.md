@@ -425,7 +425,7 @@ protection is not used. Similarly,
 such a meta-attacker could likely inject chosen DH
 values into a deployment. 
 
-- [Section 7.2](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01#section-7.2)
+1. [Section 7.2](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01#section-7.2)
 defines a key request interface, but defines no authorisation
 scheme, no HTTP authentiction, and requires no additional CMS
 protection.
@@ -439,14 +439,14 @@ that many enterprises are not capable of shutting down
 or controlling such interfaces that either ought not be
 offered or need to be protected.
 
-- Richard Barnes [points out](https://www.ietf.org/mail-archive/web/tls/current/msg23793.html)
+1. Richard Barnes [points out](https://www.ietf.org/mail-archive/web/tls/current/msg23793.html)
 that there may be "unstated requirements here to support for resumption
 (without having to find the previous session) and probably 0xRTT, and those
 modes use in a shared secret in addition to the DH secret.  So you would need
 to exfiltrate the PSK as well." If correct, that would seem to 
 indicate that this proposal is broken. 
 
-- The use of CMS means that there are already a vast array of possible (even
+1. The use of CMS means that there are already a vast array of possible (even
   deployment-speciic) extension points in this protocol. That means that it is
 not possible to have any confidence that what would be designed is what would
 be deployed. In fact, given the detectability issues above, it seems very
