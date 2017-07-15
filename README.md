@@ -126,7 +126,7 @@ if the TLS working group adopted this, or any similar, draft.
 Those changes would not all be editorial and would likely
 be time-consuming.
 
-- As a result of the discussion of this draft, Christian Huitema has proposed a
+1. As a result of the discussion of this draft, Christian Huitema has proposed a
 [pull request](https://github.com/tlswg/tls13-spec/pull/1049) for TLS1.3 to
 encourage implementers to effectively make the idea in this draft harder to deploy,
 by documenting the core static DH value idea as an attack against which
@@ -135,7 +135,7 @@ Adopting work on static DH values would therefore have the effect of forcing
 the working group to work against itself, further delaying and putting TLS1.3
 at risk.
 
-- TLS1.3 has undergone significant academic and other analyses, 
+1. TLS1.3 has undergone significant academic and other analyses, 
 (including two academic workshops,
 [TRON](https://www.internetsociety.org/events/ndss-symposium-2016/tls-13-ready-or-not-tron-workshop-programme)
 in 2016, and [TLS-DLV](https://www.mitls.org/tls:div/) in 2017), 
@@ -159,7 +159,7 @@ last minute, indicating that IETF participants do not value their inputs.
 (I admit that is speculative, but it's based on some previous discussions on the WG 
 list - it'd be good to get feedback from researchers to check.)
 
-- There could be similar problems caused for the QUIC protocol development
+1. There could be similar problems caused for the QUIC protocol development
   work, as that relies upon TLS1.3 and has similar design elements that
 could be perturbed if static DH private values were used. And QUIC has recently
 been
@@ -168,7 +168,7 @@ a substrate for 5G efforts in another SDO with fairly aggressive timelines, so
 delays in developing QUIC caused by breaking TLS could have significant effects
 elsewhere.
 
-- This draft aims/claims to enable key-leaking/wiretapping only "within"
+1. This draft aims/claims to enable key-leaking/wiretapping only "within"
 enterprise networks, but there is no way (and cannot be a way)
 to constrain the use of this scheme to such (parts of) networks.
 Figure 3 of the draft clearly describes a generic 
@@ -176,7 +176,7 @@ key-leaking/wiretapping architecture for TLS that could (and would)
 be used in many other circumstances that the authors
 have apparently not envisaged.
 
-- We also have a documented case where a law enforcement agency 
+1. We also have a documented case where a law enforcement agency 
 has attempted to coerce a mail service provider 
 called [Lavabit](https://en.wikipedia.org/wiki/Lavabit) into
 providing TLS private key materials. Developing an API
@@ -186,7 +186,7 @@ So the unintended uses for this are as real as the intended
 ones. (An aspect that is ignored by the draft and it's
 proponents.)
 
-- This draft is targeted as being an IETF standards track document
+1. This draft is targeted as being an IETF standards track document
 but is a wiretapping scheme (or enables wiretapping) that meets the definition in
 [RFC2804](https://tools.ietf.org/html/rfc2804) and therefore
 cannot be a standards-track work item in the IETF.
@@ -216,7 +216,7 @@ RFC streams.
 	- See below for more on this as a wiretapping
 proposal.
 
-- This proposal entirely suits what governments doing
+1. This proposal entirely suits what governments doing
 pervasive monitoring would need in an API. The IETF
 has documented its consensus that [Pervasive Monitoring is an Attack](https://tools.ietf.org/html/rfc7258)
 in RFC 7258, and this API would assist with such 
@@ -230,7 +230,7 @@ packet decryption. An implementation of such a function
 could clearly benefit from the GET DH value API 
 defined in this document. 
 
-- This draft tries to standardise broken crypto - forward
+1. This draft tries to standardise broken crypto - forward
 secrecy is a goal of cryptographic protocols and this 
 draft deliberately aims to not provide forward secrecy
 and indeed to break forward secrecy.  [BCP200](https://datatracker.ietf.org/doc/rfc1984/)
@@ -271,7 +271,7 @@ recent) specifically argues against such schemes:
 	created once one leaks private key materials, especially
 	via a "standard" interface. 
 
-- The argument has been made that it would be better
+1. The argument has been made that it would be better
 to scrutinise proposals such as this openly in the IETF
 instead of having individual vendors develop their
 own bad-crypto implementations. As a counter to that,
@@ -281,7 +281,7 @@ same bad-crypto, so therefore in the case of
 bad-crypto proposals such as this, it is better for
 us all that there is not a single bad-crypto standard.
 
-- Ironically, the first author of [draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
+1. Ironically, the first author of [draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
 is also a co-author of [keys under doormats](https://dspace.mit.edu/openaccess-disseminate/1721.1/102271).
 While that latter report mainly considers government
 mandated back-doors, it does 
@@ -311,14 +311,14 @@ defined here could assist that kind of privatisation of government pervasive
 monitoring as a kind of federated government backdoor, if governments mandated
 use of this scheme.
 
-- A [suggestion](https://www.ietf.org/mail-archive/web/tls/current/msg23802.html)
+1. A [suggestion](https://www.ietf.org/mail-archive/web/tls/current/msg23802.html)
 was made on the TLS list that the deployment
 of this scheme be made part of a "website's 
 terms of service." Hiding the fact that one is
 breaking TLS in legalese seems like a terrible
 idea to this user of the web.
 
-- Whether or not use of this scheme is visible to the Internet 
+1. Whether or not use of this scheme is visible to the Internet 
 has a number of consequences, all of which appear to be bad 
 outcomes. 
 
@@ -365,7 +365,7 @@ modifications mean that all effort to "improve" or "scrutinise" this scheme
 would certainly be wasted. Proprietary modifications could also significantly
 weaken security.
 
-- Developing this interface within the IETF would arguably increase the
+1. Developing this interface within the IETF would arguably increase the
   probability of "worse solutions" being deployed as those would be easier to
 integrate thanks to the existence of the "GET private key" API that TLS
 servers might then offer. An argument for this draft was
@@ -373,36 +373,36 @@ servers might then offer. An argument for this draft was
 standardising it would avoid such "worse solutions" - I see no evidence offered
 and claim (with the same evidence;-) that the opposite would eventuate.
 
-- This scheme enables active attacks - once the DH private values are known,
+1. This scheme enables active attacks - once the DH private values are known,
   then all session keys are known and seemingly valid packets can be injected
 into ongoing sessions. The abstract of the -01 draft is extermely misleading in
 claiming that it is for "passive monitoring." No mention is made in the draft
 of the active attacks it enables.
 
-- If this scheme were widespread, it would be "accidentally" deployed in places
+1. If this scheme were widespread, it would be "accidentally" deployed in places
   for which it was not intended. (See also
 [RFC2804](https://tools.ietf.org/html/rfc2804).) The result could be active
 attacks on e.g. widely downloaded web resources enabling active attacks on
 browsers.  I would expect another decade of academic publications and real
 exploits on TLS to result.
 
-- Applications built on TLS, e.g. the Web, would need to revise their security
+1. Applications built on TLS, e.g. the Web, would need to revise their security
   models to take into account this scheme, as it changes the threat model on
 which they have been built.
 
-- For the enterprise uses claimed to justify this, there is no need for
+1. For the enterprise uses claimed to justify this, there is no need for
   Internet-scale interoperability as the enterprise network is by-definition
 under a single entity's control. (And if they cannot control their network,
 then adding broken crypto seems even more unwise.)
 
-- Ossification: this draft would introduce new ways of ossifying TLS, for
+1. Ossification: this draft would introduce new ways of ossifying TLS, for
   example, the so-called "TLS decrypter" would have to be able to handle all
 updated ciphersuites before those could be used by bona-fide TLS clients and
 servers.  We have seen that non-updated PKCS#1.5 crypto hardware has caused
 problems with updating the crypto in TLS for decades now, and this would cause
 similar problems.
 
-- Brian Carpenter points out (private communication, quoted with permission)
+1. Brian Carpenter points out (private communication, quoted with permission)
   that "server load balancing and TLS load balancing don't mix well. (See
 [RFC7098](https://tools.ietf.org/html/rfc7098) for more.) In fact, there's no
 practical alternative for large server farms except TLS proxying in front of
