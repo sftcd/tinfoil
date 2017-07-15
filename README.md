@@ -142,7 +142,7 @@ at risk.
 1. TLS1.3 has undergone significant academic and other analyses, 
 (including two academic workshops,
 [TRON](https://www.internetsociety.org/events/ndss-symposium-2016/tls-13-ready-or-not-tron-workshop-programme)
-in 2016, and [TLS-DLV](https://www.mitls.org/tls:div/) in 2017), 
+in 2016, and [TLS-DIV](https://www.mitls.org/tls:div/) in 2017), 
 none of which
   (to my knowledge) envisaged the use of static DH values, nor of centrally
 generated DH values being "pushed" to many TLS servers. Similarly, work on the
