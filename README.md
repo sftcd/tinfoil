@@ -229,7 +229,7 @@ have evidence of exactly this kind of key exfiltration
 API in IPsec, as documented by [Wouters](https://nohats.ca/wordpress/blog/2014/12/29/dont-stop-using-ipsec-just-yet/)
 and [Der Spiegel](http://www.spiegel.de/media/media-35515.pdf).
 In that case, a collector has ciphertext packets and calls
-an funcftion (passing in initial packets) to get a key for 
+a function (passing in initial packets) to get a key for 
 packet decryption. An implementation of such a function
 could clearly benefit from the GET DH value API 
 defined in this document. 
