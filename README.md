@@ -543,6 +543,23 @@ TLS list, the UTA working group are also developing MTA-STS to try improve that
 situation, so any argument that mail senders and receivers do not expect
 confidentiality is sadly outdated.
 
+<pre>
+
++-----------+  +--------------+      +----------+     +---------+  +-------------+
+|mail sender+--+Submit serveer+--+---+AV scanner+-----+Recip MTA+--+mail receiver|
++-----------+  +--------------+  |   +-----+----+     +---------+  +-------------+
+                                 |         |
+                                 |         |
+                                 |         |
+                  -----------------       ----------------
+                  | TLS decrypter |-------| key manager  |
+                  -----------------       ----------------
+
+                Figure: SMTP/TLS wiretapping setup using 
+    https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01
+
+</pre>
+
 1. As another example, consider (esp. vanity domain) web sites where 
 the domain holder doesn't have shell access to the 
 machine that hosts the web site. 
@@ -562,6 +579,27 @@ traditional wiretap.
 has millions of such users, as do many many other hosted 
 sites where those communicating do not have access to 
 a shell or to the TLS server configuration.
+
+<pre>
+
++--------------+       +---------------+        +--------------+
+|blog commenter+---+---+Hosted Web Site|----+---+blog commenter|
++--------------+   |   +-------+-------+    |   +--------------+
+                   |           |            |
+                   |           |            |
+                   |    -------+--------    |
+                   |    | key manager  |    |
+                   |    ----------------    |
+                   |           |            |
+                   |           |            |
+                   |   --------+--------    |
+                   +---+ TLS decrypter +----+
+                       -----------------
+
+                Figure: Hosted web site wiretapping setup using 
+    https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01
+
+</pre>
 
 It does not matter that in these cases the third
 party (AV scanner or hoster) has access to the
