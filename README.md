@@ -175,7 +175,7 @@ elsewhere.
 1. This draft aims/claims to enable key-leaking/wiretapping only "within"
 enterprise networks, but there is no way (and cannot be a way)
 to constrain the use of this scheme to such (parts of) networks.
-Figure 3 of the draft clearly describes a generic 
+Figure 3 of the draft (reproduced below) clearly describes a generic 
 key-leaking/wiretapping architecture for TLS that could (and would)
 be used in many other circumstances that the authors
 have apparently not envisaged.
@@ -487,6 +487,27 @@ this scheme so that the local government has access to the content of any TLS
 session with that web site, then I think it'd be insane to not consider that a wiretap on
 the web site in question.
 
+<pre>
+                    --------------       -----------------
+                    | TLS server |-------|  key manager  |
+                    --------------       -----------------
+                           |                     |
+                           |                     |
+                           |                     |
+                           |             -----------------
+                           |------------>| TLS decrypter |
+                           |             -----------------
+                           |
+                           |
+                    --------------
+                    | TLS client |
+                    --------------
+
+
+                     Figure 3: TSK protocol components
+(copied from https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
+</pre>
+
 However, we can also easily see how the 2804 definitions are still met,
 even taking a lawyerly approach...
 
@@ -552,8 +573,6 @@ or on consuming a live feed from the telco-equivalent
 is immaterial - the end result is that the first 
 and second parties communications are being 
 wiretapped according to the definitions in RFC2804.
-
-[[I can add pictures if needed;-)]]
 
 ## Other/Older Proposals
 
