@@ -35,7 +35,7 @@ given the breadth of use of TLS today - both in openly specified foo/TLS
 applications but also in the presumably larger number of not publicly
 documented applications using TLS.
 
-- Note that I make no allegations about the bona-fides of any of the proponents
+1. Note that I make no allegations about the bona-fides of any of the proponents
   of the "break-TLS" schemes.  I know and respect some of them, but consider
 them misguided in contributing to proposals to break TLS.  However, we cannot
 ignore the fact that some governments are very keen to weaken Internet security
@@ -50,7 +50,7 @@ model](https://tools.ietf.org/html/rfc7624) no matter what motivations are set
 out by proponents. (And again, considering this says nothing at all proponents'
 motivations, it's just a thing that we have to consider regardless.)
 
-- TLS is already hard, as we have seen from two decades of exploits against
+1. TLS is already hard, as we have seen from two decades of exploits against
   implementations and, occasionally, against the protocol itself. The added
 complexity of any "break TLS" proposal makes that situation worse, and
 logically must do so. But we have more than argument to go on here - there is
@@ -67,7 +67,7 @@ proxies or other methods of breaking TLS) reduces security. To my knowledge,
 none of the proposed "break TLS" schemes has ever offered evidence that they
 would lead to an overall improvement in security.
 
-- In many cases like this people also argue that even if breaking TLS is
+1. In many cases like this people also argue that even if breaking TLS is
   undesirable, it's better to do that undesirable thing openly inside the IETF
 as it would happen elsewhere in any case and perhaps be done worse. Without
 specific evidence that organisation foo is about to take actionn bar, that
@@ -81,7 +81,7 @@ described as being engaged in forum shopping. In the case of "break TLS"
 proposals, one could argue (and I would) that the reason TLS is widely
 used is, in significant part, because TLS is not broken. 
 
-- In 2014, the Internet Architecture Board issued a 
+1. In 2014, the Internet Architecture Board issued a 
 [statement](https://www.iab.org/2014/11/14/iab-statement-on-internet-confidentiality/)
 to the effect that "Internet depended on users having confidence that the network would protect 
 their private information" and that we should "make encryption the norm for Internet traffic." 
@@ -93,7 +93,7 @@ for network operations, but no response that amounts to attempting to break TLS
 so far presented can be jusified due to the huge potential cost and impact
 of breaking TLS. 
 
-- Most or all approaches to breaking TLS seem to involve changing TLS from a
+1. Most or all approaches to breaking TLS seem to involve changing TLS from a
 two-party protocol (ignoring CAs for now) into a multi-party protocol, but
 one that mimics the behavior of TLS in order to have a chance to get deployed
 on the Internet.  A multi-party transport security protocol however would
