@@ -10,8 +10,12 @@ conclude that breaking TLS is a bad plan or that some specific break-TLS
 proposal is a bad plan. One killer argument per proposal should be enough, but
 it's useful to collect more than that anyway.
 
-At some point it may be worth turning this into an Internet-draft to save us
-all time for when the next break-TLS proposal comes along.
+At some point, if the TLS WG want to, it 
+[may be worth turning this into an Internet-draft](https://www.ietf.org/mail-archive/web/tls/current/msg23909.html) 
+to save us all time for when the next break-TLS proposal comes along.
+In the meantime, reading this as if it text were in a -00 draft is
+probably roughly correct if you're familiar with IETF stuff. (IOW,
+this isn't perfect text and that's ok:-)
 
 PRs that add to (really, record) those arguments are welcome, especially if
 they identify problems with specific proposals to break TLS.
@@ -271,6 +275,20 @@ recent) specifically argues against such schemes:
 	created once one leaks private key materials, especially
 	via a "standard" interface. 
 
+1. Aside from the process/BCP perspective on "bad crypto" Nick Sullivan 
+[pointed out](https://www.ietf.org/mail-archive/web/tls/current/msg23962.html) 
+issues with the specific proposal: "Static Diffie-Hellman is a
+cryptographically problematic construction. Not only was it found to be fragile
+to implement in the prime field variant ([LogJam](https://weakdh.org/)), the
+Elliptic Curve variant has recently been identified as troublesome as well (see
+recent [JWE
+vulnerability](https://blogs.adobe.com/security/2017/03/critical-vulnerability-uncovered-in-json-encryption.html)
+and
+[CVE-2017-8932](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8932)).
+Furthermore, many post-quantum key exchange mechanisms cannot be secured with
+repeated key shares (SIDH is one example).  Encouraging (or worse,
+standardizing) the repeated use of a key share seems risky and shortsighted.  "
+
 1. The argument has been made that it would be better
 to scrutinise proposals such as this openly in the IETF
 instead of having individual vendors develop their
@@ -466,8 +484,8 @@ intuitive definition of (an API for) a wiretapping technology.  The "TLS decrypt
 anywhere on the Internet, so long as it has access to the key-leaking API. 
 If some local government coerced some local popular web site into implementing
 this scheme so that the local government has access to the content of any TLS
-session with that web site, then anyone sane would consider that a wiretap on
-the web site.
+session with that web site, then I think it'd be insane to not consider that a wiretap on
+the web site in question.
 
 However, we can also easily see how the 2804 definitions are still met,
 even taking a lawyerly approach...
@@ -504,10 +522,9 @@ TLS list, the UTA working group are also developing MTA-STS to try improve that
 situation, so any argument that mail senders and receivers do not expect
 confidentiality is sadly outdated.
 
-- As another example, consider (vanity domain) web sites where 
+1. As another example, consider (esp. vanity domain) web sites where 
 the domain holder doesn't have shell access to the 
-machine that hosts the web site. (Wordpress.com has 
-millions of such users, as to many many other sites.)
+machine that hosts the web site. 
 If the hoster in that case turns on this 
 interface and provides private DH values to someone who
 has access to the ciphertext TLS packets, then that is 
@@ -519,6 +536,11 @@ are using some wordpress plugin to communicate
 are the first and second parties and the hoster is
 the third party, in the role of the telco in a
 traditional wiretap.
+
+	- And again, this is a real scenario: [wordpress.com](https://wordpress.com/) 
+has millions of such users, as do many many other hosted 
+sites where those communicating do not have access to 
+a shell or to the TLS server configuration.
 
 It does not matter that in these cases the third
 party (AV scanner or hoster) has access to the
@@ -533,10 +555,27 @@ wiretapped according to the definitions in RFC2804.
 
 [[I can add pictures if needed;-)]]
 
+## Other/Older Proposals
 
-## Feel free to add older/other break-TLS proposal debunking text below here.
+Feel free to add analyses of older/other break-TLS here or even just links to
+drafts/papers. For now, I'll just note a few that'd deserve coverage if 
+[the TLS WG think documenting those would be useful](https://www.ietf.org/mail-archive/web/tls/current/msg23909.html).
 
-For example, about mcTLS, if you have the energy to
-consider that nonsense.
+### [mcTLS](https://mctls.org/)
+
+This was a [sigcomm publication](http://www.cs.cmu.edu/~dnaylor/mcTLS.pdf)
+(sigcomm went down in my estimation for accepting that) assuming that it makes
+sense for the random IP address (of a middlebox) to be somehow authorised by
+the endpoints in a TLS sesssion to join in as a 3rd party in a TLS session.
+
+### http/2 Related Proposals
+
+These drafts were proposed during the development of http/2.
+
+- In 2014: [draft-loreto-httpbis-trusted-proxy20-01](https://tools.ietf.org/html/draft-loreto-httpbis-trusted-proxy20-01)
+- In 2013: [draft-vidya-httpbis-explicit-proxy-ps-00](https://tools.ietf.org/html/draft-vidya-httpbis-explicit-proxy-ps-00)
+- In 2012: [draft-rpeon-httpbis-exproxy-00](https://tools.ietf.org/html/draft-rpeon-httpbis-exproxy-00)
+
+
 
 
