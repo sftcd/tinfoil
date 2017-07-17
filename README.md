@@ -618,6 +618,17 @@ Feel free to add analyses of older/other break-TLS here or even just links to
 drafts/papers. For now, I'll just note a few that'd deserve coverage if 
 [the TLS WG think documenting those would be useful](https://www.ietf.org/mail-archive/web/tls/current/msg23909.html).
 
+### [TLS-RaR](https://nsr.cse.buffalo.edu/mobisys_2017/papers/pdfs/mobisys17-paper32.pdf)
+
+From the abstract: "This paper presents TLS–Rotate and Release (TLS-RaR),
+a system that allows device owners (e.g., consumers, security
+researchers, and consumer watchdogs) to authorize devices,
+called  auditors,  to  decrypt  and  verify  recent  TLS  traffic
+without compromising future traffic."
+
+Analysis TBD.
+
+
 ### [mcTLS](https://mctls.org/)
 
 This was a [sigcomm publication](http://www.cs.cmu.edu/~dnaylor/mcTLS.pdf)
@@ -632,6 +643,10 @@ These drafts were proposed during the development of http/2.
 - In 2014: [draft-loreto-httpbis-trusted-proxy20-01](https://tools.ietf.org/html/draft-loreto-httpbis-trusted-proxy20-01)
 - In 2013: [draft-vidya-httpbis-explicit-proxy-ps-00](https://tools.ietf.org/html/draft-vidya-httpbis-explicit-proxy-ps-00)
 - In 2012: [draft-rpeon-httpbis-exproxy-00](https://tools.ietf.org/html/draft-rpeon-httpbis-exproxy-00)
+
+### [draft-mcgrew-tls-proxy-server-01](https://tools.ietf.org/html/draft-mcgrew-tls-proxy-server-01)
+
+I've forgotten what happened with that one, need to go look back @ list.
 
 
 
