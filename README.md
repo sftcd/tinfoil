@@ -186,6 +186,12 @@ key-leaking/wiretapping architecture for TLS that could (and would)
 be used in many other circumstances that the authors
 have apparently not envisaged.
 
+	- As pointed out on the list (e.g. by 
+[Yoav Nir](https://www.ietf.org/mail-archive/web/tls/current/msg24070.html) and others), if there was
+a standard for this scheme, code for that would leak into being
+used on the public Internet via the normal implementations that
+are used both within and outside pretty much all networks.
+
 1. We also have a documented case where a law enforcement agency 
 has attempted to coerce a mail service provider 
 called [Lavabit](https://en.wikipedia.org/wiki/Lavabit) into
