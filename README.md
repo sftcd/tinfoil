@@ -163,6 +163,12 @@ last minute, indicating that IETF participants do not value their inputs.
 (I admit that is speculative, but it's based on some previous discussions on the WG 
 list - it'd be good to get feedback from researchers to check.)
 
+1. Kenny Paterson (private communication, quoted with permission) notes that
+history has shown that static DH in TLS (and elsewhere) is not "implementation
+robust" - another relevant attack is
+[this](http://nds.rub.de/media/nds/veroeffentlichungen/2015/09/14/main-full.pdf)
+one which is quite spectacular.
+
 1. There could be similar problems caused for the QUIC protocol development
   work, as that relies upon TLS1.3 and has similar design elements that
 could be perturbed if static DH private values were used. And QUIC has recently
