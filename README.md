@@ -658,7 +658,22 @@ These drafts were proposed during the development of http/2.
 
 ### [draft-mcgrew-tls-proxy-server-01](https://tools.ietf.org/html/draft-mcgrew-tls-proxy-server-01)
 
-I've forgotten what happened with that one, need to go look back @ list.
+This was a draft from people working on so-called "Next Generation Firewalls". 
+Such firewall products typically include a client-side TLS proxy that has a 
+Certification Authority (CA) and signs "fake certificates" (that is what the 
+vendors call them internally) for the websites that clients behind those proxies
+attempt to connect to. 
+
+The interception is usually visible to the clients, because they have to be configured 
+to trust the interception CA, but in some [well-publicized cases](https://nakedsecurity.sophos.com/2013/01/08/the-turktrust-ssl-certificate-fiasco-what-happened-and-what-happens-next/)
+(mis-)trusted CAs issued sub-CA certificates for such purposes. Even when used as intended,
+the interception is invisible to the TLS server. The interception also hinders the client's 
+ability to validate the server certificate, because the client only sees the fake certificate.
+This prevents the client from displaying the Extended Validation indication for server certificates.
+
+The draft was intended to make the real certificate visible to the client and to make the 
+interception detectable to the server in order to alleviate those limitations. The TLS WG 
+did not want to adopt this work, and the draft was abandoned.
 
 
 
