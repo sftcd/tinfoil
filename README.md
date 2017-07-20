@@ -33,8 +33,8 @@ by](https://datatracker.ietf.org/doc/rfc5246/referencedby/) 434 other IETF
 specifications, and is
 [cited](https://scholar.google.com/scholar?q=http%3A%2F%2Fwww.hjp.at%2Fdoc%2Frfc%2Frfc5246.html&btnG=&hl=en&as_sdt=0%2C5)
 by 3,281 publications in Google Scholar.  Accepting any proposal that might
-weaken such an important security  protocol without due dilligence is utterly
-unwise.  And it is hard to see how anyone could really do that due dilligence
+weaken such an important security  protocol without due diligence is utterly
+unwise.  And it is hard to see how anyone could really do that due diligence
 given the breadth of use of TLS today - both in openly specified foo/TLS
 applications but also in the presumably larger number of not publicly
 documented applications using TLS.
@@ -59,11 +59,11 @@ motivations, it's just a thing that we have to consider regardless.)
 complexity of any "break TLS" proposal makes that situation worse, and
 logically must do so. But we have more than argument to go on here - there is
 evidence for this from peer-reviewed academic studies and examination of TLS
-interception implmentations, for example [Durumeric et
-al](https://www.internetsociety.org/sites/default/files/ndss2017_04A-4_Durumeric_paper.pdf)
+interception implementations, for example [Durumeric et
+al.](https://www.internetsociety.org/sites/default/files/ndss2017_04A-4_Durumeric_paper.pdf)
 found that "that nearly all [interception proxies] reduce connection security
 and many introduce severe vulnerabilities" whilst [de Carnavalet et
-al](http://users.encs.concordia.ca/~mmannan/publications/ssl-interception-ndss2016.pdf)
+al.](http://users.encs.concordia.ca/~mmannan/publications/ssl-interception-ndss2016.pdf)
 performed a "systematic analysis uncovered that several of these tools severely
 affect TLS security on their host machines." So, where there is evidence
 publicly available, it seems to indicate that additional complexity (via
@@ -74,13 +74,13 @@ would lead to an overall improvement in security.
 1. In many cases like this people also argue that even if breaking TLS is
   undesirable, it's better to do that undesirable thing openly inside the IETF
 as it would happen elsewhere in any case and perhaps be done worse. Without
-specific evidence that organisation foo is about to take actionn bar, that
+specific evidence that organisation foo is about to take action bar, that
 argument is impossible to judge, so is at best neutral. When there is specific
 evidence of something relevant being done elsewhere, then the IAB and IESG have
-liaison mechaisms that can be used for the purpose for which they were
+liaison mechanisms that can be used for the purpose for which they were
 designed.  IOW, "if we don't, they will" is not a good argument that the IETF
 should do any particular thing at all. In the author's experience, this
-argument is commonly assoociated with proponents of proposals that might be fairly
+argument is commonly associated with proponents of proposals that might be fairly
 described as being engaged in forum shopping. In the case of "break TLS"
 proposals, one could argue (and I would) that the reason TLS is widely
 used is, in significant part, because TLS is not broken. 
@@ -94,7 +94,7 @@ here because we'd end up repeating almost all of it).
 The IAB statement 
 recognises that increasingly widespread use of TLS causes issues
 for network operations, but no response that amounts to attempting to break TLS
-so far presented can be jusified due to the huge potential cost and impact
+so far presented can be justified due to the huge potential cost and impact
 of breaking TLS. 
 
 1. Most or all approaches to breaking TLS seem to involve changing TLS from a
@@ -146,13 +146,13 @@ in 2016, and [TLS-DIV](https://www.mitls.org/tls:div/) in 2017),
 none of which
   (to my knowledge) envisaged the use of static DH values, nor of centrally
 generated DH values being "pushed" to many TLS servers. Similarly, work on the
-TLS application layer PDU protection didn't envisge re-use of DH values in
+TLS application layer PDU protection didn't envise re-use of DH values in
 possibly many TLS sessions.  Adoption of any work in this space could require
 re-doing some of the analysis work, possibly delaying TLS1.3 or (worse)
 resulting in new problems being found after widespread deployment. Given that
 this draft would create new active and passive attack possibilities, such new
 analysis work would seem to be required, especially if proprietary 
-extensions to the proposed "TSK" protocol affect the cryptogrphy used
+extensions to the proposed "TSK" protocol affect the cryptography used
 in TLS sessions. 
 
 	- The work done by academic analyses of TLS1.3 has been valuable in terms
@@ -225,8 +225,8 @@ obsolete RFC2804, and are thus attempting an end-run
 around IETF processes.
 
 	- To my knowledge, all wiretapping schemes 
-docuemted in RFC so far have been in the independent
-stream (hence not IETF docuemts) or perhaps pre-date
+documented in RFC so far have been in the independent
+stream (hence not IETF documents) or perhaps pre-date
 RFC streams.
 
 	- See below for more on this as a wiretapping
@@ -405,7 +405,7 @@ and claim (with the same evidence;-) that the opposite would eventuate.
 
 1. This scheme enables active attacks - once the DH private values are known,
   then all session keys are known and seemingly valid packets can be injected
-into ongoing sessions. The abstract of the -01 draft is extermely misleading in
+into ongoing sessions. The abstract of the -01 draft is extremely misleading in
 claiming that it is for "passive monitoring." No mention is made in the draft
 of the active attacks it enables.
 
@@ -457,7 +457,7 @@ values into a deployment.
 
 1. [Section 7.2](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01#section-7.2)
 defines a key request interface, but defines no authorisation
-scheme, no HTTP authentiction, and requires no additional CMS
+scheme, no HTTP authentication, and requires no additional CMS
 protection.
 This creates an excellent target to attempt to find
 when one has breached some network. That is an excellent 
@@ -477,10 +477,10 @@ to exfiltrate the PSK as well." If correct, that would seem to
 indicate that this proposal is broken. 
 
 1. The use of CMS means that there are already a vast array of possible (even
-  deployment-speciic) extension points in this protocol. That means that it is
+  deployment-specific) extension points in this protocol. That means that it is
 not possible to have any confidence that what would be designed is what would
 be deployed. In fact, given the detectability issues above, it seems very
-likely that non-deection (meaning non-compliance with the putative RFC) will be
+likely that non-detection (meaning non-compliance with the putative RFC) will be
 a goal for implementers.
 
 IMO none of the above ought not be fixed by IETF participants collectively.
@@ -488,7 +488,7 @@ IMO none of the above ought not be fixed by IETF participants collectively.
 #### Why is this wiretapping?
 
 Some IETF TLS WG list participants have denied that this is a wiretapping
-propospal, based on it somehow not matching the definitions in 
+proposal, based on it somehow not matching the definitions in 
 [RFC2804](https://tools.ietf.org/html/rfc2804).
 Firstly, that is far too lawyerly and IMO being overly pedantic with the 2804
 definitions. If one looks at Figure 3 in the draft, it very clearly matches any
@@ -527,7 +527,7 @@ even taking a lawyerly approach...
 clearly allows that intermediate MTA to renege and leak
 their private values and hence senders and recipients will
 not get the confidentiality they expect. Note that SMTP/TLS
-is almost ubiquituous today and that 2-TLS session setups
+is almost ubiquitous today and that 2-TLS session setups
 are common, e.g. if the intermediary MTA does AV scanning.
 In this case, the relevant parties to the communication
 (for the RFC2804 definition) are the mail senders and
@@ -558,7 +558,7 @@ confidentiality is sadly outdated.
 <pre>
 
 +-----------+  +--------------+      +----------+     +---------+  +-------------+
-|mail sender+--+Submit serveer+--+---+AV scanner+-----+Recip MTA+--+mail receiver|
+|mail sender+--+Submit server +--+---+AV scanner+-----+Recip MTA+--+mail receiver|
 +-----------+  +--------------+  |   +-----+----+     +---------+  +-------------+
                                  |         |
                                  |         |
