@@ -106,9 +106,25 @@ whatever problem one is facing.
 
 ## Specific "break-TLS" proposals
 
+## Current Proposals
+
+<strong>Watch this space, sadly.</strong>
+
+## Other/Older/Dead Proposals
+
+Feel free to add analyses of older/other break-TLS here or even just links to
+drafts/papers.  For now, other than
+[draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01),
+I've just noted a few that'd deserve coverage if [the TLS WG think documenting
+those would be
+useful](https://www.ietf.org/mail-archive/web/tls/current/msg23909.html).
+
 ### [draft-green-tls-static-dh-in-tls13-01](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01)
 
-This is the current (July 2017) proposal for breaking TLS.
+This July 2017 draft was a proposal for breaking TLS that
+was discussed at IETF 99, didn't [come anywhere near achieving
+rough consensusa](https://www.ietf.org/mail-archive/web/tls/current/msg24172.html) and so is hopefully dead.
+
 It fails in the following ways:
 
 1. The [TLS working group charter](https://tools.ietf.org/wg/tls/charters)
@@ -442,6 +458,17 @@ solving that problem, or the intrusion/DOS detection problem, but they do have
 a choice about monitoring as such.  Separating the operational requirements
 from the political requirements might be a good first step."
 
+1. Dan Harkins mentioned IPR at the TLS session
+
+1. Paul Wouters mentioned that the IETF is deprecating some DH groups
+
+1. mnot: https is 2 party, there's no way to get informed consent to change
+that, same here
+
+1. Ted Hardie: PFS is a feature, you can't tell on 1st connection for sure that it's
+been removed and that's a basic feature, and hence needs to be indicated,
+this doesn't meet that basic protocol feature.
+
 While I'm reluctant to comment on the details of a bad
 design, there are a couple of things to point out: 
 
@@ -623,12 +650,6 @@ or on consuming a live feed from the telco-equivalent
 is immaterial - the end result is that the first 
 and second parties communications are being 
 wiretapped according to the definitions in RFC2804.
-
-## Other/Older Proposals
-
-Feel free to add analyses of older/other break-TLS here or even just links to
-drafts/papers. For now, I'll just note a few that'd deserve coverage if 
-[the TLS WG think documenting those would be useful](https://www.ietf.org/mail-archive/web/tls/current/msg23909.html).
 
 ### [TLS-RaR](https://nsr.cse.buffalo.edu/mobisys_2017/papers/pdfs/mobisys17-paper32.pdf)
 
