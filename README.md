@@ -458,7 +458,7 @@ solving that problem, or the intrusion/DOS detection problem, but they do have
 a choice about monitoring as such.  Separating the operational requirements
 from the political requirements might be a good first step."
 
-1. Dan Harkins mentioned IPR at the TLS session
+1. IPR: As of 20170727, there are a couple of [IPR declarations](https://datatracker.ietf.org/ipr/search/?id=draft-green-tls-static-dh-in-tls13&submit=draft) to be considered.
 
 1. Paul Wouters mentioned that the IETF is deprecating some DH groups
 
