@@ -1,5 +1,7 @@
 # tinfoil: TLS Is Not For Obligatory Interception, Luckily
 
+(20171002 update, sadly, we've [another one](#latest) to deal with.)
+
 This repository is a place to collect together arguments for not breaking TLS.
 By "breaking TLS" I mean significantly weakening the protocol, or
 implementations or deployments of the protocol, so that the security claims
@@ -106,9 +108,12 @@ whatever problem one is facing.
 
 ## Specific "break-TLS" proposals
 
-## Current Proposals
+<h2 id ="latest" name="latest">Current Proposals</h2>
 
-<strong>Watch this space, sadly.</strong>
+### [draft-rhrd-tls-tls13-visibility-00](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+
+And indeed we now (20171002) have to see off the latest break-tls bad idea.
+That's sad. More to come on that.
 
 ## Other/Older/Dead Proposals
 
