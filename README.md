@@ -1,6 +1,9 @@
-# tinfoil: TLS Is Not For Obligatory Interception, Luckily
+# tinfoil: TLS Is Not For Obligatory (Or Ostensibly Optional) Interception, Luckily
 
-(20171002 update, sadly, we've [another one](#latest) to deal with.)
+*20171009 update, I've started to document the failings of the [latest](#latest) 
+proposal we're forced to deal with. Believe it or not, I did do a pass to tone down the
+language already, but am happy to do more of that, if people think that'll
+help the discussion. Not that this discussion can be anything but horrendous:-(*
 
 This repository is a place to collect together arguments for not breaking TLS.
 By "breaking TLS" I mean significantly weakening the protocol, or
@@ -19,7 +22,7 @@ In the meantime, reading this as if it text were in a -00 draft is
 probably roughly correct if you're familiar with IETF stuff. (IOW,
 this isn't perfect text and that's ok:-)
 
-PRs that add to (really, record) those arguments are welcome, especially if
+PRs that improve or add to or just record those arguments are welcome, especially if
 they identify problems with specific proposals to break TLS.
 
 ## Scheme-independent Points
@@ -87,7 +90,8 @@ described as being engaged in forum shopping. In the case of "break TLS"
 proposals, one could argue (and I would) that the reason TLS is widely
 used is, in significant part, because TLS is not broken. 
 
-1. In 2014, the Internet Architecture Board issued a 
+
+1. <id ="iabst" name="iabst"/>In 2014, the Internet Architecture Board issued a 
 [statement](https://www.iab.org/2014/11/14/iab-statement-on-internet-confidentiality/)
 to the effect that "Internet depended on users having confidence that the network would protect 
 their private information" and that we should "make encryption the norm for Internet traffic." 
@@ -106,14 +110,329 @@ on the Internet.  A multi-party transport security protocol however would
 require either a substantially different API or to move up the stack to solve
 whatever problem one is facing.  
 
+1. Some people argue that 20 years (or so) ago the IETF was wrong to have
+ignored the reality of NAT deployments, and draw a comparison with breaking
+TLS, particularly in enterprise gateways. They draw the erroneous conclusion
+that the IETF should therefore standardise ways to break TLS, as a way of
+dealing with what is the sad reality for some networks,
+where TLS is intercepted. Firstly, by itself that's not good logic, as it would
+mean that the IETF should standardise anything that is deployed without
+exercising any judgement. But most people making the argument probably don't
+really mean that and implicitly think that some level of TLS interception is
+unavoidable.  But regardless of what one thinks about NAT, the conclusion that
+we ought therefore break TLS remains erroneous - recognising the existence of
+NAT would not have directly damaged networks that do not use NAT, whereas
+breaking TLS causes breakage and damages trust for all applications using TLS,
+for all time - the impact here would be far broader than just the networks
+already suffering TLS interception. So the equivalent argument really would be:
+should the IETF have entirely given up on the end-to-end argument because of
+NAT deployments or not?  And the answer to that is "no," just as the answer
+when asked to standardise breaking TLS is "no." The bottom line is that the
+"it's just like NAT, the network suffered because we ignored NAT, so we 
+should break TLS" argument is fallacious. 
+
 ## Specific "break-TLS" proposals
 
 <h2 id ="latest" name="latest">Current Proposals</h2>
 
 ### [draft-rhrd-tls-tls13-visibility-00](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
 
-And indeed we now (20171002) have to see off the latest break-tls bad idea.
-That's sad. More to come on that.
+Since it helps to have a pronounceable name for things, I'm personally calling
+this draft [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+on the basis of the output of:
+
+		$ grep "^r.h.r.d" /usr/share/dict/words
+		rehired
+
+
+### Arguments already raised in the [draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01) debacle:
+
+These arguments were raised but not substantively dealt with 
+in the discussion of [draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01), but remain telling. (And
+again, only one killer argument needs to be accepted to 
+see off this latest bad idea.) Some of the wording has
+been tweaked for 
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00), 
+but mainly the arguments are the same, and as good as ever.
+
+1. The [TLS working group charter](https://tools.ietf.org/wg/tls/charters)
+dated 2017-03-30 calls for improving the security of TLS, and 
+this proposal involves leaking secret key material to 
+unnamed thir parties and hence clearly falls outside the charter.
+
+1. TLS1.3 (and DTLS1.3) are still not finished and any
+work within the IETF on this draft will put those efforts
+at risk. For example, the abstract of the latest
+[TLS1.3 draft](https://tools.ietf.org/html/draft-ietf-tls-tls13-21)
+says that TLS is "designed to prevent eavesdropping" - changes
+to that and possibly many other claims would be needed
+if the TLS working group adopted this, or any similar, draft.
+Those changes would not all be editorial and would likely
+be time-consuming. [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) is worse than draft-green
+in this respect as it is very unclear how the extensions
+here fit into the overall lifecycle of TLS sessions between
+two entities (e.g. what about 0rtt replayable data?). Adopting
+this now would set back TLS1.3 by at least a year.
+
+1. TLS1.3 has undergone significant academic and other analyses, 
+(including two academic workshops,
+[TRON](https://www.internetsociety.org/events/ndss-symposium-2016/tls-13-ready-or-not-tron-workshop-programme)
+in 2016, and [TLS-DIV](https://www.mitls.org/tls:div/) in 2017), 
+none of which
+  (to my knowledge) envisaged the use of key escrow, nor of
+"farms" of TLS servers using the same SSWrapDH1.
+Adoption of any work in this space could require
+re-doing some of the analysis work, possibly delaying TLS1.3 or (worse)
+resulting in new problems being found after widespread deployment. Given that
+this draft would create new active and passive attack possibilities, such new
+analysis work would seem to be required, especially if proprietary 
+uses of the awfully-named "tls_visibility"
+extension were to emerge (which seems likely). 
+
+	- The work done by academic analyses of TLS1.3 has been valuable in terms
+of improving the quality of the IETF's output. Radical changes to TLS1.3 at this point 
+will likely disincent researchers from contributing as a part of the process 
+in future as they may perceive the IETF to be moving the goalposts at the
+last minute, indicating that IETF participants do not value their inputs.
+(I admit that is speculative, but it's based on some previous discussions on the WG 
+list - it'd be good to get feedback from researchers to check.)
+
+1. There could be similar problems caused for the QUIC protocol development
+  work, as that relies upon TLS1.3 and has similar design elements that
+could be perturbed if session keys are leaky.
+
+1. This draft tries to standardise broken crypto - forward
+secrecy is a goal of cryptographic protocols and this 
+draft deliberately aims to not provide forward secrecy
+and indeed to break forward secrecy.  [BCP200](https://datatracker.ietf.org/doc/rfc1984/)
+(which was promoted to BCP in 2015, and so is very
+recent) specifically argues against such schemes:
+
+	- "Escrow mechanisms inevitably weaken the security of the overall
+   cryptographic system, by creating new points of vulnerability that
+   can and will be attacked." 
+
+	- "KEYS SHOULD NOT BE REVEALABLE
+   The security of a modern cryptosystem rests entirely on the secrecy
+   of the keys.  Accordingly, it is a major principle of system design
+   that to the extent possible, secret keys should never leave their
+   user's secure environment.  Key escrow implies that keys must be
+   disclosed in some fashion, a flat-out contradiction of this
+   principle.  Any such disclosure weakens the total security of the
+   system."
+
+	- "Even if escrowed encryption schemes are used, there is nothing to
+   prevent someone from using another encryption scheme first.
+   Certainly, any serious malefactors would do this; the outer
+   encryption layer, which would use an escrowed scheme, would be used
+   to divert suspicion."
+
+	- "A major threat to users of cryptographic systems is the theft of
+   long-term keys (perhaps by a hacker), either before or after a
+   sensitive conversation.  To counter this threat, schemes with
+   "perfect forward secrecy" are often employed.  If PFS is used, the
+   attacker must be in control of the machine during the actual
+   conversation.  But PFS is generally incompatible with schemes
+   involving escrow of private keys.  (This is an oversimplification,
+   but a full analysis would be too lengthy for this document.)"
+
+	- Note that while the concept of key escrow that was being
+	promulgated in the mid 1990's is not identical to that 
+    being proposed here, the same vulnerabilities are
+	created once one leaks private key materials, especially
+	via a "standard" interface. 
+
+1. The argument has been made that it would be better
+to scrutinise proposals such as this openly in the IETF
+instead of having individual vendors develop their
+own bad-crypto implementations. As a counter to that,
+while scrutiny is good for good crypto, the overall
+ecosystem will be harmed by widespread use of the
+same bad-crypto, so therefore in the case of
+bad-crypto proposals such as this, it is better for
+us all that there is not a single bad-crypto standard.
+In [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) there is in fact nothing to stop
+the server and third parties using crap-crypto without anyone else knowing.
+
+1. If this scheme were widespread, it would be "accidentally" deployed in places
+  for which it was not intended. (See also
+[RFC2804](https://tools.ietf.org/html/rfc2804).) The result could be active
+attacks on e.g. widely downloaded web resources enabling active attacks on
+browsers.  I would expect another decade of academic publications and real
+exploits on TLS to result.
+
+1. Applications built on TLS, e.g. the Web, would need to revise their security
+  models to take into account this scheme, as it changes the threat model on
+which they have been built.
+
+1. For the enterprise uses claimed to justify this, there is no need for
+  Internet-scale interoperability as the enterprise network is by-definition
+under a single entity's control. (And if they cannot control their network,
+then adding broken crypto seems even more unwise.)
+
+1. Ossification: this draft would introduce new ways of ossifying TLS, for
+  example, the holder of the private component of SSWrapDH1 would have to be able to handle all
+updated ciphersuites before those could be used by bona-fide TLS clients and
+servers.  We have seen that non-updated PKCS#1.5 crypto hardware has caused
+problems with updating the crypto in TLS for decades now, and this would cause
+similar problems.
+
+### And here are some more [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) specific reasons to not do this:
+
+Again, it's a pain to have to beat up on a -00, but that seems to
+be what's needed, so here we go...
+
+I'm focusing here on the fundamental errors in [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) and
+hopefully less on the bits that could in theory be "improved." 
+(Noting that "improving" is an oxymoron her;-)
+
+1. The title and abstract are significantly misleading. This proposal enables
+an active attacker on the TLS session in question. The title and abstract seem
+to this reader as if designed to minimise or to attempt to obfuscate this fact.
+(Previous attempts te break TLS have also apparently required such misnomers,
+e.g. via the abuse of the term "passive" or "trusted proxy.")
+
+1. There still is no real blood-brain barrier between uses of TLS that do or do
+not involve data centres. The presentation and analysis here are (and must be)
+woefully incomplete.  Adopting a change to such a widely deployed protocol as
+TLS with such a dearth of analysis would be irresponsible of the WG and
+of the IETF.
+
+1. [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) claims that the third parties are  "authorized"
+but that is not the case - the client has no say in which 3rd parties
+end up with the keys, nor is the client even told about which
+third parties get to see and possibly modify all their traffic.
+And the server doesn't even have to have a name for the wiretapper.
+(Adding names will not help however - this goes back to the problem
+of trying to abuse a 2-party protocol for >2 parties.)
+
+1. Despite the design-goal of client opt-in
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+would nicely enable state-level snooping and modification of TLS traffic
+*without client knowledge* - all that would be needed is to mandate that the
+value of the server's TLSVisibilityExtension be provided to the surveillance
+infrastucture and the TLS extensions be omitted from the handshake. Once server
+code supports this as-written, then that could easily be done out of band -
+there is nothing in this proposal that cryptographically *requires* the client
+to even know about the leaked keys/snooping. 
+
+1. The concept that TLS clients will "consent" to this is risible - general TLS
+clients could be mandated by local regulation to emit the "please screw me"
+extension.  What browser chrome would then be displayed? There are no
+good answers there, nor is there any way for a TLS client user (when a person)
+to choose when to send the "please screw me" extension. Due to scarce
+screen real estate some applications on mobile devices will thus send this
+always, utterly undermining TLS. And the so-called "consent" situation
+for other applications is completely unknown.
+
+1. Enterprise TLS clients unlucky enough to be forced to send this will not be
+able to distinguish enterprise-local from remote wiretapping, and nor will
+enterprise infrastructure unless is maintains an up-to-the minute white-list of
+allowed wiretapper fingerprints.  In addition to not matching any sensible
+enterprise policy, that would also even further encourage enterprises to MITM
+all outbound TLS with all the known-bad consequences.
+
+1. Sending the "please screw me" extension (in clear) in the ClientHello is
+broadcasting/advertising the vulnerability.
+
+1. Yes, despite the author's efforts, this would still 
+enable wiretapping as defined in 
+[RFC2804](https://tools.ietf.org/html/rfc2804).
+The figure below is one of possibly many scenarios to
+demonstrate that: if the browser is unlucky enough to
+be behind e.g., some corporate TLS MITM attacker (a not unlikely
+scenario, that presumably the authors of 
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+are happy enough to encourage) then that MITM proxy can be set
+to emit the "please screw me" ClientHello extension
+and any co-operating or coerced web servers will then
+emit the required session key information to allow
+the wiretapper to work happily on the Web. Enabling such
+scenarios is an inherent consequence of trying to make TLS a >2 party
+protocol.
+
+<pre>
+
++-----------+  +--------------+      +----------+
+|browser    +--+TLS MITM Proxy+--+---+Web server|
++-----------+  +--------------+  |   +-----+----+
+                                 |         
+                                 |         
+                                 |        
+                         -----------------
+                         | TLS decrypter |
+                         -----------------
+
+                Figure: Browser wiretapping setup using 
+    https://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00
+
+</pre>
+
+### Some not-quite editorial isuses...
+
+1. Despite the extended debates on the WG list, this paragraph of the
+introduction is erroneous to the point of almost seeming disingeneous, it says:
+
+		Specifically, the use of ephemeral ciphersuites prevents the use of
+		current enterprise network monitoring tools such as Intrusion
+		Detection Systems (IDS) and application monitoring systems, which
+		leverage the current TLS RSA handshake to passively decrypt and
+		monitor intranet TLS connections made between endpoints under the
+		enterprise's control. 
+
+	Discussion on the TLS WG list has previously discredited such overly-broad assertions,
+on the basis that a) many people have asserted that these are non-problems
+for their real data-centres and b) those who like static RSA key transport can
+just keep using TLS1.2 *within their data-centres* for years to come. There is nothing that will prevent
+anyone from continuing to do that. (That is despite FUD-like
+claims about PCI-DSS - if one wanted to justify a PCI-DSS based claim
+one would need to point at the specific (but non-existent) PCI-DSS 
+requirement for TLS1.3 or to one that requires plaintext access outside 
+the transport endpoiints.
+None of the proponents of breaking-TLS has done that, despite repeated
+requests.)
+
+1. "nearly always an improvement" are pretty much weasel-words.
+Either the authors agree with the IETF [BCP200](https://tools.ietf.org/html/bcp200) 
+that forward secrecy is a best current practice, or they do not. If they did
+agree with BCP200 they presumably would not write this
+draft, which is designed to break forward-secrecy. 
+If they disagree with BCP200, then they ought suggest a re-charter
+for the WG or a revision of BCP200.
+
+1. It is worth noting the irony that one of the authors of
+<a href="">draft-rehired</a> was the IAB chair when the IAB correctly issued the <a href="#iabst">IAB statement</a>
+referred to above. 
+Given this contrast, it is fair to quote from that IAB
+statement and consider how it is diametrically opposed
+to 
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+ 
+		The IAB urges protocol designers to design for confidential operation by
+		default.  We strongly encourage developers to include encryption in their
+		implementations, and to make them encrypted by default.  We similarly encourage
+		network and service operators to deploy encryption where it is not yet
+		deployed, and we urge firewall policy administrators to permit encrypted
+		traffic.
+		
+		We believe that each of these changes will help restore the trust users
+		must have in the Internet.  
+
+	While one might attempt to argue that the above does not say "and oh,
+by the way, it is ok to hand out session keys to some unnamed parties so 
+they can decrypt ciphertext" such an
+argument seems risible - the IAB statement's words above argue for the opposite of 
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00).
+
+1. [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+says that forward secrecy "may slow adoption of TLS 1.3 or force enterprises to
+continue to use outdated and potentially vulnerable technology" but then goes
+on to propose adding a specific and concrete actual vulnerability (key escrow)
+and one that would further ossify TLS1.3 (see above). Bad plan.  As stated
+before, there's no reason why so-called "data centre" uses need to adopt TLS1.3
+now, nor why such data-centre internal uses of TLS would significantly slow
+adoption of TLS1.3 elsewhere.
+
 
 ## Other/Older/Dead Proposals
 
@@ -327,7 +646,7 @@ to scrutinise proposals such as this openly in the IETF
 instead of having individual vendors develop their
 own bad-crypto implementations. As a counter to that,
 while scrutiny is good for good crypto, the overall
-ecosystem will be harmed by wide-spread use of the
+ecosystem will be harmed by widespread use of the
 same bad-crypto, so therefore in the case of
 bad-crypto proposals such as this, it is better for
 us all that there is not a single bad-crypto standard.
@@ -457,7 +776,7 @@ similar problems.
   that "server load balancing and TLS load balancing don't mix well. (See
 [RFC7098](https://tools.ietf.org/html/rfc7098) for more.) In fact, there's no
 practical alternative for large server farms except TLS proxying in front of
-the servers.  At a quick glance it seems to me that draft-green doesn't
+the servers.  At a quick glance it seems to me that [draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01) doesn't
 separate this issue from the rest. But server farms have no choice about
 solving that problem, or the intrusion/DOS detection problem, but they do have
 a choice about monitoring as such.  Separating the operational requirements
