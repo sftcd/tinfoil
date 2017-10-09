@@ -284,7 +284,7 @@ be what's needed, so here we go...
 
 I'm focusing here on the fundamental errors in [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) and
 hopefully less on the bits that could in theory be "improved." 
-(Noting that "improving" is an oxymoron her;-)
+(Noting that "improving" is an oxymoron here;-)
 
 1. The title and abstract are significantly misleading. This proposal enables
 an active attacker on the TLS session in question. The title and abstract seem
@@ -327,7 +327,7 @@ for other applications is completely unknown.
 
 1. Enterprise TLS clients unlucky enough to be forced to send this will not be
 able to distinguish enterprise-local from remote wiretapping, and nor will
-enterprise infrastructure unless is maintains an up-to-the minute white-list of
+enterprise infrastructure unless it maintains an up-to-the minute white-list of
 allowed wiretapper fingerprints.  In addition to not matching any sensible
 enterprise policy, that would also even further encourage enterprises to MITM
 all outbound TLS with all the known-bad consequences.
@@ -421,7 +421,8 @@ to
 	While one might attempt to argue that the above does not say "and oh,
 by the way, it is ok to hand out session keys to some unnamed parties so 
 they can decrypt ciphertext" such an
-argument seems risible - the IAB statement's words above argue for the opposite of 
+argument seems very unlikely to have been IAB member's mind whilst
+writing that statement - the IAB statement's words above argue for the opposite of 
 [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00).
 
 1. [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
