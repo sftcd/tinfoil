@@ -5,6 +5,10 @@ proposal we're forced to deal with. Believe it or not, I did do a pass to tone d
 language already, but am happy to do more of that, if people think that'll
 help the discussion. Not that this discussion can be anything but horrendous:-(*
 
+*20171019 - just noting a few points that were raised in the initial TLS WG 
+[list discussion](https://www.ietf.org/mail-archive/web/tls/current/msg24492.html)
+of [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)*
+
 This repository is a place to collect together arguments for not breaking TLS.
 By "breaking TLS" I mean significantly weakening the protocol, or
 implementations or deployments of the protocol, so that the security claims
@@ -130,6 +134,21 @@ NAT deployments or not?  And the answer to that is "no," just as the answer
 when asked to standardise breaking TLS is "no." The bottom line is that the
 "it's just like NAT, the network suffered because we ignored NAT, so we 
 should break TLS" argument is fallacious. 
+
+1. [Ben Kaduk](https://www.ietf.org/mail-archive/web/tls/current/msg24620.html) 
+raised a general issue that is a problem whether or not break-TLS proposals
+try to be an "opt-in" by 
+making themselves visible to TLS clients: if they do not, then they fail
+to be transparent (as in 
+[draft-green](https://tools.ietf.org/html/draft-green-tls-static-dh-in-tls13-01) 
+), but if they do make themselves visible in a way that a network intermediary
+can see, then "once a visible ClientHello extension is needed to enable wiretapping,
+certain parties (e.g., national border firewalls) would reject/drop
+*all* ClientHellos not containing that extension, thereby extorting all
+clients into "opting in" to the wiretapping and effectively rendering
+the "opt-in" requirement useless for those clients." And it seems hard
+to propose an opt-in scheme where the opting-in or not is not 
+detectable by an on-path intermediary. 
 
 ## Specific "break-TLS" proposals
 
@@ -331,6 +350,38 @@ enterprise infrastructure unless it maintains an up-to-the minute white-list of
 allowed wiretapper fingerprints.  In addition to not matching any sensible
 enterprise policy, that would also even further encourage enterprises to MITM
 all outbound TLS with all the known-bad consequences.
+
+1. Multiparty imperfect forward secrecy: While forward secrecy is a goal
+for cryptographic protocols, it is rarely perfect, despite earlier
+uses of the term. In particular, performance reasons may call for use
+of tickets or other structures that are stored and that could break
+forward secrecy, typically if the server suffers a breach. With TLS
+as-is, the trade-offs in term of how imperfect to allow one's forward
+secrecy to be is essentially a matter for the TLS endpoints. With 
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) 
+both the server and the snooper are now involved in deciding how
+imperfect to make forward secrecy. Given there is no real 
+protocol between those (and nothing that involves the client),
+the fairly predictable end-result will be very long and hard to
+change durations during which sessions are at risk due to a breach
+in one place. (Breach in snooper is clear, same applies in the
+TLS server though, as whoever breaks in can replace the snooper's
+DH with their own.) Multi-party control over cryptographic 
+parameters such as this seems hugely unwise.
+
+1. Inter-snooper relationships: If a protocol like 
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00) 
+were standardised, there would be an immediate call to generalise that
+to more than one snooper. In discussion of this on the ilst, 
+[Florian Weimer](https://www.ietf.org/mail-archive/web/tls/current/msg24607.html)
+raised the point that one might require none of the snoopers are
+aware of one another, or one might require 
+that all the snoopers
+are aware of all the other snoopers. Similarly, the real TLS endpoints
+might be required to know about some or all of the snoopers. This
+situation seems laden with contradictions. For example, if the client knows
+all the snoopers, then any snooper can create a new TLS session with
+the same server and discover something about all the snoopers.
 
 1. Sending the "please screw me" extension (in clear) in the ClientHello is
 broadcasting/advertising the vulnerability.
