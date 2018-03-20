@@ -1,5 +1,9 @@
 # tinfoil: TLS Is Not For Obligatory (Or Ostensibly Optional) Interception, Luckily
 
+*20180319 update - the TLS WG discussed version -01 
+of [https://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-01](https://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-01)
+and there was no consensus to adopt that, so that proopsal may now be dead.*
+
 *20171009 update, I've started to document the failings of the [latest](#latest) 
 proposal we're forced to deal with. Believe it or not, I did do a pass to tone down the
 language already, but am happy to do more of that, if people think that'll
