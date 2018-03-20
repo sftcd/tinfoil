@@ -2,7 +2,7 @@
 
 *20180319 update - the TLS WG discussed version -01 
 of [https://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-01](https://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-01)
-and there was no consensus to adopt that, so that proopsal may now be dead.*
+and there was no consensus to adopt that, so that proposal may now be dead.*
 
 *20171009 update, I've started to document the failings of the [latest](#latest) 
 proposal we're forced to deal with. Believe it or not, I did do a pass to tone down the
@@ -11,7 +11,7 @@ help the discussion. Not that this discussion can be anything but horrendous:-(*
 
 *20171019 - just noting a few points that were raised in the initial TLS WG 
 [list discussion](https://www.ietf.org/mail-archive/web/tls/current/msg24492.html)
-of [draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)*
+of [draft-rehired](https://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)*
 
 This repository is a place to collect together arguments for not breaking TLS.
 By "breaking TLS" I mean significantly weakening the protocol, or
