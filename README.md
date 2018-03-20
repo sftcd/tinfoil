@@ -154,6 +154,11 @@ the "opt-in" requirement useless for those clients." And it seems hard
 to propose an opt-in scheme where the opting-in or not is not 
 detectable by an on-path intermediary. 
 
+1. Even though the stated goal of these proposals is to allow monitoring
+of the connection contents, exposing the session keys to a third-party
+also allows said third-party to modify the connection contents, that is,
+TLS loses not only confidentiality, but also integrity.
+
 ## Specific "break-TLS" proposals
 
 <h2 id ="latest" name="latest">Current Proposals</h2>
@@ -181,7 +186,7 @@ but mainly the arguments are the same, and as good as ever.
 1. The [TLS working group charter](https://tools.ietf.org/wg/tls/charters)
 dated 2017-03-30 calls for improving the security of TLS, and 
 this proposal involves leaking secret key material to 
-unnamed thir parties and hence clearly falls outside the charter.
+unnamed third parties and hence clearly falls outside the charter.
 
 1. TLS1.3 (and DTLS1.3) are still not finished and any
 work within the IETF on this draft will put those efforts
@@ -312,7 +317,7 @@ hopefully less on the bits that could in theory be "improved."
 1. The title and abstract are significantly misleading. This proposal enables
 an active attacker on the TLS session in question. The title and abstract seem
 to this reader as if designed to minimise or to attempt to obfuscate this fact.
-(Previous attempts te break TLS have also apparently required such misnomers,
+(Previous attempts to break TLS have also apparently required such misnomers,
 e.g. via the abuse of the term "passive" or "trusted proxy.")
 
 1. There still is no real blood-brain barrier between uses of TLS that do or do
@@ -390,6 +395,10 @@ the same server and discover something about all the snoopers.
 1. Sending the "please screw me" extension (in clear) in the ClientHello is
 broadcasting/advertising the vulnerability.
 
+1. On the other direction, the extension in the ServerHello identifies
+not only the presence of the vulnerability, but also which long-term key
+should be stolen to be able to decrypt the connection.
+
 1. Yes, despite the author's efforts, this would still 
 enable wiretapping as defined in 
 [RFC2804](https://tools.ietf.org/html/rfc2804).
@@ -423,7 +432,7 @@ protocol.
 
 </pre>
 
-### Some not-quite editorial isuses...
+### Some not-quite editorial issues...
 
 1. Despite the extended debates on the WG list, this paragraph of the
 introduction is erroneous to the point of almost seeming disingeneous, it says:
@@ -488,6 +497,12 @@ and one that would further ossify TLS1.3 (see above). Bad plan.  As stated
 before, there's no reason why so-called "data centre" uses need to adopt TLS1.3
 now, nor why such data-centre internal uses of TLS would significantly slow
 adoption of TLS1.3 elsewhere.
+
+1. TLS1.3 deliberately removed from TLS the option to send the session
+secrets encrypted with a long-term key.
+[draft-rehired](http://tools.ietf.org/html/draft-rhrd-tls-tls13-visibility-00)
+reintroduces that possibility. That would be a step backwards in the protocol
+evolution.
 
 
 ## Other/Older/Dead Proposals
